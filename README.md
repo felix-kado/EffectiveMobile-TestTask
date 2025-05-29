@@ -63,6 +63,8 @@ LOG_LEVEL=info
 * `make swagger`     — сгенерировать Swagger-документацию
 * `make compose-up`  — поднять через docker-compose
 * `make compose-down`— остановить контейнеры
+* `make test`        — тесты
+* `make lint`        — линтер
 
 ## API Endpoints
 
@@ -102,22 +104,3 @@ http://localhost:${SERVER_PORT}/swagger/index.html
 
 
 
-
-## Тесты
-
-Чтобы запустить тесты
-```bash
-make test
-```
-
-Или:
-
-```bash
-go test ./... -v
-```
-
-## Линтер
-
-```bash
-make lint
-```
