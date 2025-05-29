@@ -7,7 +7,10 @@ type CreatePersonCommand struct {
 }
 
 type UpdatePersonCommand struct {
-	Name       *string
-	Surname    *string
-	Patronymic *string
+	Name        *string
+	Surname     *string
+	Patronymic  *string
+	Age         *int
+	Gender      *string
+	Nationality *string
 }

@@ -370,7 +370,16 @@
         "internal_handler.UpdatePersonRequest": {
             "type": "object",
             "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "gender": {
+                    "type": "string"
+                },
                 "name": {
+                    "type": "string"
+                },
+                "nationality": {
                     "type": "string"
                 },
                 "patronymic": {

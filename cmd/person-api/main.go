@@ -16,7 +16,7 @@ import (
 	"person-api/internal/services/person"
 	"person-api/internal/storage/postgres"
 
-	_ "person-api/docs"
+	_ "person-api/internal/handler/docs"
 )
 
 func main() {

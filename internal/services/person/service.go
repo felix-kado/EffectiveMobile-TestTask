@@ -65,6 +65,15 @@ func (s *personService) UpdatePerson(ctx context.Context, id int64, cmd model.Up
 	if cmd.Patronymic != nil {
 		old.Patronymic = cmd.Patronymic
 	}
+	if cmd.Age != nil {
+		old.Age = cmd.Age
+	}
+	if cmd.Gender != nil {
+		old.Gender = cmd.Gender
+	}
+	if cmd.Nationality != nil {
+		old.Nationality = cmd.Nationality
+	}
 	updated, err := s.st.UpdatePerson(ctx, id, old)
 	if err != nil {
 		return model.Person{}, err

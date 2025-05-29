@@ -101,9 +101,9 @@ func handleCreate(svc person.Service) http.HandlerFunc {
 			respondError(w, http.StatusBadRequest, "invalid request payload")
 			return
 		}
-		// простая валидация полей
-		if req.Name == "" || req.Surname == "" {
-			respondError(w, http.StatusBadRequest, "name and surname are required")
+
+		if err := req.Validate(); err != nil {
+			respondError(w, http.StatusBadRequest, err.Error())
 			return
 		}
 
@@ -147,15 +147,25 @@ func handleUpdate(svc person.Service) http.HandlerFunc {
 			respondError(w, http.StatusBadRequest, "invalid request payload")
 			return
 		}
-		if req.Name == nil && req.Surname == nil && req.Patronymic == nil {
+
+		if req.Name == nil && req.Surname == nil && req.Patronymic == nil &&
+			req.Age == nil && req.Gender == nil && req.Nationality == nil {
 			respondError(w, http.StatusBadRequest, "no fields to update")
 			return
 		}
 
+		if err = req.Validate(); err != nil {
+			respondError(w, http.StatusBadRequest, err.Error())
+			return
+		}
+
 		cmd := model.UpdatePersonCommand{
-			Name:       req.Name,
-			Surname:    req.Surname,
-			Patronymic: req.Patronymic,
+			Name:        req.Name,
+			Surname:     req.Surname,
+			Patronymic:  req.Patronymic,
+			Age:         req.Age,
+			Gender:      req.Gender,
+			Nationality: req.Nationality,
 		}
 		p, err := svc.UpdatePerson(r.Context(), id, cmd)
 		if err != nil {

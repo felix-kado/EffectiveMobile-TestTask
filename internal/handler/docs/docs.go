@@ -381,7 +381,16 @@ const docTemplate = `{
         "internal_handler.UpdatePersonRequest": {
             "type": "object",
             "properties": {
+                "age": {
+                    "type": "integer"
+                },
+                "gender": {
+                    "type": "string"
+                },
                 "name": {
+                    "type": "string"
+                },
+                "nationality": {
                     "type": "string"
                 },
                 "patronymic": {
@@ -405,8 +414,6 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
-	LeftDelim:        "{{",
-	RightDelim:       "}}",
 }
 
 func init() {
