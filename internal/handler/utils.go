@@ -4,16 +4,14 @@ import (
 	"encoding/json"
 	"errors"
 	"net/http"
-	"strconv"
-
 	"person-api/internal/model"
+	"strconv"
 )
 
 func respondJSON(w http.ResponseWriter, status int, data interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(status)
 	if err := json.NewEncoder(w).Encode(data); err != nil {
-		// логируем прямо в консоль, т.к. логгер тут недоступен
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
@@ -38,7 +36,6 @@ func parsePersonQuery(r *http.Request) (model.PersonQuery, error) {
 			return q, errors.New("invalid page_size parameter")
 		}
 	}
-	// остальные фильтры без ошибок: строки и неотрицательные числа
 	if v := r.URL.Query().Get("name"); v != "" {
 		q.Name = &v
 	}

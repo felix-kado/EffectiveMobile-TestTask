@@ -39,3 +39,9 @@ compose-up:
 compose-down:
 	@echo "→ docker-compose down"
 	docker-compose down
+
+test:
+	go test ./... -v
+
+lint:
+	golangci-lint run

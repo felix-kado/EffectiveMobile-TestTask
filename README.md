@@ -107,3 +107,24 @@ http://localhost:${SERVER_PORT}/swagger/index.html
 * В коде используются `info`- и `debug`-логи для отслеживания вызовов и ошибок.
 
 
+
+
+
+## Тесты
+
+Чтобы запустить тесты
+```bash
+make test
+```
+
+Или:
+
+```bash
+go test ./... -v
+```
+
+## Линтер
+
+```bash
+make lint
+```
