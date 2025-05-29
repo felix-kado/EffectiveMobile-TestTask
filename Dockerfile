@@ -13,16 +13,15 @@ FROM alpine:3.18
 RUN apk add --no-cache ca-certificates postgresql-client
 
 WORKDIR /app
+
 COPY --from=builder /go/bin/goose /usr/local/bin
+COPY --from=builder /app/apply-migrations.sh .
 COPY --from=builder /app/person-api .
-COPY --from=builder /app/migrations ./migrations
+COPY --from=builder /app/internal/storage/postgres/migrations ./internal/storage/postgres/migrations
 
 ENV PATH="/usr/local/bin:${PATH}"
-ENV DB_DSN="postgres://user:password@db:5432/persons?sslmode=disable"
+ENV DB_DSN="postgres://user:password@${DB_HOST:-db}:${DB_PORT:-5432}/persons?sslmode=disable"
 
 EXPOSE 8080
 
-ENTRYPOINT sh -c '\
-  until pg_isready -h db -p 5432 -U user; do sleep 1; done && \
-  goose -dir ./migrations postgres "$DB_DSN" up && \
-  exec ./person-api'
+ENTRYPOINT ["./person-api"]
