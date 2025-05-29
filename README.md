@@ -60,16 +60,9 @@ LOG_LEVEL=info
 
 ## Makefile
 
-* `make build`       — собрать бинарник
-* `make run`         — запустить локально
-* `make migrate-up`  — применить миграции вверх
-* `make migrate-down`— откатить миграции
 * `make swagger`     — сгенерировать Swagger-документацию
-* `make docker-build`— собрать Docker-образ
-* `make docker-run`  — запустить контейнер
 * `make compose-up`  — поднять через docker-compose
 * `make compose-down`— остановить контейнеры
-* `make clean`       — удалить бинарник
 
 ## API Endpoints
 
